@@ -11,16 +11,21 @@
   // display(Person.prototype);
 
   let brenna = new Person('Brenna', 'Cosby');
-  let marcus = new Person('Marcus', 'Stanfill');
+  display(brenna.__proto__);
+  display(brenna.__proto__.__proto__);
 
-  Person.prototype = { age: 26 };
 
-  let coz = new Person('Jeffery', 'Cosby');
 
-  display(Person.prototype);
-  display(brenna.age);
-  display(marcus.age);
-  display(coz.age);
+  // let marcus = new Person('Marcus', 'Stanfill');
+
+  // Person.prototype = { age: 26 };
+
+  // let coz = new Person('Jeffery', 'Cosby');
+
+  // display(Person.prototype);
+  // display(brenna.age);
+  // display(marcus.age);
+  // display(coz.age);
   
   // marcus.age = 48;
   // display(brenna.age);
