@@ -24,10 +24,32 @@
     }
   }
 
+  class Student extends Person {
+    constructor(firstName, lastName, age) {
+      super(firstName, lastName, age);
+      this._enrolledCourses = [];
+    }
+    enroll(courseId) {
+      this._enrolledCourses.push(courseId);
+    }
+
+    getCourses() {
+      return this.fullName + "'s enrolled courses are: " +
+        this._enrolledCourses.join(', ');
+    }
+  }
+
   Object.defineProperty(Person.prototype, 'fullName', { enumerable: true });
 
   let brenna = new Person('Brenna', 'Cosby', 21);
+  let marcus = new Student('Marcus', 'Stanfill', 48);
   display(brenna);
+
+  marcus.enroll('History');
+  marcus.enroll('Government');
+  marcus.enroll('Algebra');
+
+  display(marcus.getCourses());
 
   // brenna.fullName = 'Marcus Stanfill'
 
