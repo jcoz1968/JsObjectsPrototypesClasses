@@ -1,60 +1,35 @@
 "use strict";
-(function() {
-  let person = {
-    name: {
-      firstName: "Jeffery",
-      lastName: "Cosby"
-    },
-    age: 50
-  };
+(function () {
+  
+  function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
+  Person.prototype.age = 21;
 
-  Object.defineProperty(person, 'fullName', {
-    get: function () {
-      return this.name.firstName + ' ' + this.name.lastName;
-    },
-    set: function (value) { 
-      var nameParts = value.split(' ');
-      this.name.firstName = nameParts[0];
-      this.name.lastName = nameParts[1];
-    }
-  });
+  display(Person.prototype);
 
-  person.fullName = 'Brenna Cosby'
+  let brenna = new Person('Brenna', 'Cosby');
 
-  display(person.fullName);
-  display(person.name.lastName);
-  display(person.name.firstName);
+  display(brenna.__proto__);
 
+  display(Person.prototype === brenna.__proto__);
 
-  // Object.defineProperty(person, "firstName", { configurable: false });
-  // Object.defineProperty(person, "firstName", { configurable: true });
+  // let myFunction = function () { };
 
-  // delete person.firstName;
-  // display(person);
-
-
-  // Object.defineProperty(person, "firstName", { enumerable: false });
-  // for (let propertyName in person) {
-  //   display(propertyName + ": " + person[propertyName]);
-  // }
-  // display(Object.keys(person));
-  // display(JSON.stringify(person));
-  // display(person.firstName);
+  // display(myFunction.prototype);
 
   // let person = {
   //   name: {
-  //     firstName: 'Jeffery',
-  //     lastName: 'Cosby',
+  //     firstName: "Jeffery",
+  //     lastName: "Cosby"
   //   },
   //   age: 50
   // };
 
-  // Object.defineProperty(person, 'name', { writable: false });
-  // Object.freeze(person.name);
+  // display(person.prototype);
+  // display(person.__proto__);
 
-  // // display(Object.getOwnPropertyDescriptor(person, 'firstName'));
-  // // person.firstName = 'Brenna';
-  // person.name.firstName = 'Brenna';
-  // display(person.name);
+
 })();
