@@ -1,75 +1,60 @@
 "use strict";
-(function () {
-  
-  let person1 = {
-    firstName: 'Jeffery',
-    lastName: 'Cosby',
+(function() {
+  let person = {
+    name: {
+      firstName: "Jeffery",
+      lastName: "Cosby"
+    },
     age: 50
   };
 
-  let person2 = Object.create(
-    Object.prototype, {
-      firstName: {
-        value: 'Jeffery',
-        enumerable: true,
-        writable: true,
-        configurable: true
-      },
-      lastName: {
-        value: 'Cosby',
-        enumerable: true,
-        writable: true,
-        configurable: true
-      },
-      age: {
-        value: 50,
-        enumerable: true,
-        writable: true,
-        configurable: true
-      }      
+
+  Object.defineProperty(person, 'fullName', {
+    get: function () {
+      return this.name.firstName + ' ' + this.name.lastName;
+    },
+    set: function (value) { 
+      var nameParts = value.split(' ');
+      this.name.firstName = nameParts[0];
+      this.name.lastName = nameParts[1];
     }
-  )
+  });
 
-  display(person1);
-  display(person2);
+  person.fullName = 'Brenna Cosby'
 
-  // function Person(firstName, lastName, age) {
-  //   this.firstName = firstName;
-  //   this.lastName = lastName;
-  //   this.age = age;
-  //   this.isAdult = function () { return this.age >= 18; }
+  display(person.fullName);
+  display(person.name.lastName);
+  display(person.name.firstName);
+
+
+  // Object.defineProperty(person, "firstName", { configurable: false });
+  // Object.defineProperty(person, "firstName", { configurable: true });
+
+  // delete person.firstName;
+  // display(person);
+
+
+  // Object.defineProperty(person, "firstName", { enumerable: false });
+  // for (let propertyName in person) {
+  //   display(propertyName + ": " + person[propertyName]);
   // }
+  // display(Object.keys(person));
+  // display(JSON.stringify(person));
+  // display(person.firstName);
 
-  // let brenna = new Person('Brenna', 'Cosby', 21);
-  // let jeffery = new Person('Jeffery', 'Cosby', 50);
-
-  // display(brenna.isAdult());
-  // display(jeffery.isAdult());
-
-
-  // let healthStats = {
-  //   height: 68,
-  //   weight: 150
+  // let person = {
+  //   name: {
+  //     firstName: 'Jeffery',
+  //     lastName: 'Cosby',
+  //   },
+  //   age: 50
   // };
 
-  // function mergeHealthStats(person, healthStats) {
-  //   return Object.assign({}, person1, healthStats);
-  // }
+  // Object.defineProperty(person, 'name', { writable: false });
+  // Object.freeze(person.name);
 
-  // let mergedPerson = mergeHealthStats(person1, healthStats);
-  
-  // display(mergedPerson);
-
-  // display(person1);
-
-  // let person2 = {};
-  // Object.assign(person2, person1);
-  // display(person2);
-  // display(person1 === person2);
-  // for (let propertyName in person) {
-  //   display(propertyName);
-  // }
-  // for...in
-  // display(Object.keys(person));
-  // display(person.isAdult());
+  // // display(Object.getOwnPropertyDescriptor(person, 'firstName'));
+  // // person.firstName = 'Brenna';
+  // person.name.firstName = 'Brenna';
+  // display(person.name);
 })();
