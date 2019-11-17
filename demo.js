@@ -3,10 +3,11 @@
 
   let person = {
     lastName: 'Cosby',
-    firstName: 'Jeffery'
+    firstName: 'Jeffery',
+    age: 50,
+    isAdult: function () { return person.age >= 18; }
   };
 
-  display(person.firstName);
-  registerUser(person);
+  display(person.isAdult().toString());
 
 })();
