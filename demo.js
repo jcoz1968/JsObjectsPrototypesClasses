@@ -1,17 +1,37 @@
 "use strict";
 (function() {
   let person = {
-    firstName: "Jeffery",
-    lastName: "Cosby",
+    name: {
+      firstName: "Jeffery",
+      lastName: "Cosby"
+    },
     age: 50
   };
 
+
+  Object.defineProperty(person, 'fullName', {
+    get: function () {
+      return this.name.firstName + ' ' + this.name.lastName;
+    },
+    set: function (value) { 
+      var nameParts = value.split(' ');
+      this.name.firstName = nameParts[0];
+      this.name.lastName = nameParts[1];
+    }
+  });
+
+  person.fullName = 'Brenna Cosby'
+
+  display(person.fullName);
+  display(person.name.lastName);
+  display(person.name.firstName);
+
+
   // Object.defineProperty(person, "firstName", { configurable: false });
-  Object.defineProperty(person, "firstName", { configurable: true });
+  // Object.defineProperty(person, "firstName", { configurable: true });
 
-  delete person.firstName;
-  display(person);
-
+  // delete person.firstName;
+  // display(person);
 
 
   // Object.defineProperty(person, "firstName", { enumerable: false });
