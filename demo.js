@@ -6,17 +6,21 @@
     age: 50
   };
 
-  Object.defineProperty(person, "firstName", { enumerable: false });
+  // Object.defineProperty(person, "firstName", { configurable: false });
+  Object.defineProperty(person, "firstName", { configurable: true });
 
-  for (let propertyName in person) {
-    display(propertyName + ": " + person[propertyName]);
-  }
+  delete person.firstName;
+  display(person);
 
-  display(Object.keys(person));
 
-  display(JSON.stringify(person));
 
-  display(person.firstName);
+  // Object.defineProperty(person, "firstName", { enumerable: false });
+  // for (let propertyName in person) {
+  //   display(propertyName + ": " + person[propertyName]);
+  // }
+  // display(Object.keys(person));
+  // display(JSON.stringify(person));
+  // display(person.firstName);
 
   // let person = {
   //   name: {
