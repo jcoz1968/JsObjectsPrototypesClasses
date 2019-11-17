@@ -13,13 +13,21 @@
   let brenna = new Person('Brenna', 'Cosby');
   let marcus = new Person('Marcus', 'Stanfill');
 
-  marcus.age = 48;
+  Person.prototype = { age: 26 };
 
+  let coz = new Person('Jeffery', 'Cosby');
+
+  display(Person.prototype);
   display(brenna.age);
   display(marcus.age);
+  display(coz.age);
+  
+  // marcus.age = 48;
+  // display(brenna.age);
+  // display(marcus.age);
 
-  display(brenna.hasOwnProperty('age'));
-  display(marcus.hasOwnProperty('age'));
+  // display(brenna.hasOwnProperty('age'));
+  // display(marcus.hasOwnProperty('age'));
 
   // display(brenna.__proto__);
   // display(Person.prototype === brenna.__proto__);
