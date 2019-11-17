@@ -1,17 +1,50 @@
 "use strict";
-(function() {
-  function Person(firstName, lastName, age) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.isAdult = function () { return this.age >= 18; }
-  }
+(function () {
+  
+  let person1 = {
+    firstName: 'Jeffery',
+    lastName: 'Cosby',
+    age: 50
+  };
 
-  let brenna = new Person('Brenna', 'Cosby', 21);
-  let jeffery = new Person('Jeffery', 'Cosby', 50);
+  let person2 = Object.create(
+    Object.prototype, {
+      firstName: {
+        value: 'Jeffery',
+        enumerable: true,
+        writable: true,
+        configurable: true
+      },
+      lastName: {
+        value: 'Cosby',
+        enumerable: true,
+        writable: true,
+        configurable: true
+      },
+      age: {
+        value: 50,
+        enumerable: true,
+        writable: true,
+        configurable: true
+      }      
+    }
+  )
 
-  display(brenna.isAdult());
-  display(jeffery.isAdult());
+  display(person1);
+  display(person2);
+
+  // function Person(firstName, lastName, age) {
+  //   this.firstName = firstName;
+  //   this.lastName = lastName;
+  //   this.age = age;
+  //   this.isAdult = function () { return this.age >= 18; }
+  // }
+
+  // let brenna = new Person('Brenna', 'Cosby', 21);
+  // let jeffery = new Person('Jeffery', 'Cosby', 50);
+
+  // display(brenna.isAdult());
+  // display(jeffery.isAdult());
 
 
   // let healthStats = {
