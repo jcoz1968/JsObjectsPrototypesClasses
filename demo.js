@@ -19,11 +19,19 @@
       this.lastName = nameParts[1];
     }
 
+    isAdult() {
+      return this.age >= 18;
+    }
   }
 
-  let brenna = new Person('Brenna', 'Cosby', 21);
-  brenna.fullName = 'Marcus Stanfill'
+  Object.defineProperty(Person.prototype, 'fullName', { enumerable: true });
 
-  display(brenna.fullName);
+  let brenna = new Person('Brenna', 'Cosby', 21);
+  display(brenna);
+
+  // brenna.fullName = 'Marcus Stanfill'
+
+  // display(brenna.fullName);
+  // display(brenna.isAdult());
   
 })();
