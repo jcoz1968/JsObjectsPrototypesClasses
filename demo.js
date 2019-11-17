@@ -1,20 +1,52 @@
 "use strict";
 (function () {
   
-  function Person(firstName, lastName) {
+  function Person(firstName, lastName, age) {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.age = age;
+    Object.defineProperty(this, "fullName", {
+      get: function() {
+        return this.firstName + " " + this.lastName;
+      },
+      enumerable: true
+    });
   }
 
-  Person.prototype.age = 21;
+  function Student(firstName, lastName, age) {
+    Person.call(this, firstName, lastName, age);
+    this._enrolledCourses = [];
+    this.enroll = function(courseId) {
+      this._enrolledCourses.push(courseId);
+    };
+    this.getCourses = function () {
+      return this.fullName + "'s enrolled courses are: " + this._enrolledCourses.join(', ');
+    };
+  }
+  display(Student.prototype.constructor);
+  Student.prototype = Object.create(Person.prototype);
+  display(Student.prototype.constructor);
+  Student.prototype.constructor = Student;
+  display(Student.prototype.constructor);
+
+  // let brenna = new Student('Brenna', 'Cosby', 21);
+
+  // // display(brenna);
+  // // display(brenna.__proto__);
+  // // display(brenna.__proto__.__proto__);
+  // brenna.enroll('History');
+  // brenna.enroll('Government');
+  // brenna.enroll('Algebra');
+
+  // display(brenna.getCourses());
+
+  // Person.prototype.age = 21;
 
   // display(Person.prototype);
 
-  let brenna = new Person('Brenna', 'Cosby');
-  display(brenna.__proto__);
-  display(brenna.__proto__.__proto__);
-
-
+  // let brenna = new Person('Brenna', 'Cosby');
+  // display(brenna.__proto__);
+  // display(brenna.__proto__.__proto__);
 
   // let marcus = new Person('Marcus', 'Stanfill');
 
@@ -26,7 +58,7 @@
   // display(brenna.age);
   // display(marcus.age);
   // display(coz.age);
-  
+
   // marcus.age = 48;
   // display(brenna.age);
   // display(marcus.age);
@@ -51,6 +83,4 @@
 
   // display(person.prototype);
   // display(person.__proto__);
-
-
 })();
