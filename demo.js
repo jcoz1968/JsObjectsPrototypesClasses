@@ -1,12 +1,28 @@
 "use strict";
 (function () {
 
-  let date = new Date(1000);
-  let isoDate = new Date('2019-11-17T00:00:00Z');
-  let bestDate = new Date(2017, 10, 17, 1, 30, 50);
+  function findAlerts(logData) {
+    let regex = /ERROR(.*?):(.*?);/g;
+    
+    let result = regex.exec(logData);
+    while(result !== null) {
+      display(result[1]);
+      display(result[2]);
+      display('---------------------------');
+      result = regex.exec(logData);    
+    }
+  }
+   
+  let logData = 'INFO:Ok;ERROR(HIGH):Something broke;ERROR(LOW):Something fishy;ERROR(HIGH):So many errors;';
+   
+  findAlerts(logData);
 
-  display(date.toString());
-  display(isoDate.toString());
-  display(bestDate.toString());
+  // function checkPasswordComplexity(password) {
+  //   let regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  //   return regex.test(password);
+  // }
+
+  // display(checkPasswordComplexity('password'));
+  // display(checkPasswordComplexity('#Winterfell321'));
 
 })();
