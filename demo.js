@@ -29,6 +29,11 @@
       super(firstName, lastName, age);
       this._enrolledCourses = [];
     }
+
+    static fromPerson(person) {
+      return new Student(person.firstName, person.lastName, person.age);
+    }
+
     enroll(courseId) {
       this._enrolledCourses.push(courseId);
     }
@@ -50,6 +55,9 @@
   marcus.enroll('Algebra');
 
   display(marcus.getCourses());
+
+  let jeffStudent = Student.fromPerson(brenna);
+  display(jeffStudent);
 
   // brenna.fullName = 'Marcus Stanfill'
 
