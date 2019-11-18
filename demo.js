@@ -1,67 +1,28 @@
 "use strict";
 (function () {
 
-  class Person {
+  function findAlerts(logData) {
+    let regex = /ERROR(.*?):(.*?);/g;
     
-    constructor(firstName, lastName, age) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.age = age;
-    }
-
-    get fullName() {
-      return this.firstName + " " + this.lastName;
-    }
-
-    set fullName(fullName) {
-      var nameParts = fullName.split(' ');
-      this.firstName = nameParts[0];
-      this.lastName = nameParts[1];
-    }
-
-    isAdult() {
-      return this.age >= 18;
+    let result = regex.exec(logData);
+    while(result !== null) {
+      display(result[1]);
+      display(result[2]);
+      display('---------------------------');
+      result = regex.exec(logData);    
     }
   }
+   
+  let logData = 'INFO:Ok;ERROR(HIGH):Something broke;ERROR(LOW):Something fishy;ERROR(HIGH):So many errors;';
+   
+  findAlerts(logData);
 
-  class Student extends Person {
-    constructor(firstName, lastName, age) {
-      super(firstName, lastName, age);
-      this._enrolledCourses = [];
-    }
+  // function checkPasswordComplexity(password) {
+  //   let regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  //   return regex.test(password);
+  // }
 
-    static fromPerson(person) {
-      return new Student(person.firstName, person.lastName, person.age);
-    }
+  // display(checkPasswordComplexity('password'));
+  // display(checkPasswordComplexity('#Winterfell321'));
 
-    enroll(courseId) {
-      this._enrolledCourses.push(courseId);
-    }
-
-    getCourses() {
-      return this.fullName + "'s enrolled courses are: " +
-        this._enrolledCourses.join(', ');
-    }
-  }
-
-  Object.defineProperty(Person.prototype, 'fullName', { enumerable: true });
-
-  let brenna = new Person('Brenna', 'Cosby', 21);
-  let marcus = new Student('Marcus', 'Stanfill', 48);
-  display(brenna);
-
-  marcus.enroll('History');
-  marcus.enroll('Government');
-  marcus.enroll('Algebra');
-
-  display(marcus.getCourses());
-
-  let jeffStudent = Student.fromPerson(brenna);
-  display(jeffStudent);
-
-  // brenna.fullName = 'Marcus Stanfill'
-
-  // display(brenna.fullName);
-  // display(brenna.isAdult());
-  
 })();
